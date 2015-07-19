@@ -6,21 +6,22 @@ class SentimentAnalyser:
         self.hashtags = {"#jeb": "Jeb Bush", "#clinton": "Hillary Clinton", "#trump": "Donald Trump", "#hilary": "Hillary Clinton", "#berniesanders": "Bernie Sanders"}
     def generateSentiment(self, text):
         r = self.client.post('analyzesentiment',{'text':text})
-        dictJson = {"candidate": self.getCandidate(text)}
         docs = r.json()
-        print docs
         if(docs['aggregate']['score'] != 0):
+            dictJson = {"candidate": self.getCandidate(text)}
             if docs['positive'] != []:
                 for doc in docs['positive']:
                     dictJson[doc['topic']] = doc['score']
             if docs['negative'] != []:
                 for doc in docs['negative']:
                     dictJson[doc['topic']] = doc['score']
-        
-        return dictJson
+            return dictJson
     def getCandidate(self, tweet):
-        return next(value for key, value in self.hashtags.iteritems() if key in tweet)
-
+        try:
+            x = next(value for key, value in self.hashtags.iteritems() if key in tweet)
+        except StopIteration:
+            x = "Jeb Bush"               
+        return x
 def main():
     sent = SentimentAnalyser()
     sent.generateSentiment("#jeb I love cats and I love dogs and I hate PIGs")

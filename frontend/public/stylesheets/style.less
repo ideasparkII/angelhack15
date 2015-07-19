@@ -1,0 +1,112 @@
+@base-size: 150px;
+
+.navbar {
+	border-radius: 0;
+	background-color: #3333FF;
+	h1 {
+		color: #FFFFFF;
+	}
+}
+
+.float-right {
+	float: right;
+}
+
+.sentiment-map {
+	float: left;
+	height: @base-size*4;
+	width: @base-size*7.25;
+}
+
+.sentiment-chart {
+	float: left;
+	height: @base-size;
+	width: @base-size*6;
+}
+
+.legend {
+	div, h5 {
+		float: left;
+	}
+	
+	h5 {
+		margin: 10px;
+	}
+}
+
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#49db2b+0,f4ff30+50,ff0000+100 */
+.gradient {
+	width: 100px;
+	height: 25px;
+	background: #49db2b; /* Old browsers */
+	background: -moz-linear-gradient(left, #49db2b 0%, #f4ff30 50%, #ff0000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#49db2b), color-stop(50%,#f4ff30), color-stop(100%,#ff0000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, #49db2b 0%,#f4ff30 50%,#ff0000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, #49db2b 0%,#f4ff30 50%,#ff0000 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, #49db2b 0%,#f4ff30 50%,#ff0000 100%); /* IE10+ */
+	background: linear-gradient(to right, #49db2b 0%,#f4ff30 50%,#ff0000 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49db2b', endColorstr='#ff0000',GradientType=1 ); /* IE6-9 */	
+}
+
+
+.issue-list {
+	float: right;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	height: 60px;
+	li {
+		width: 50px;
+		height: 50px;
+		background-color: #FFFFFF;
+		background-size: contain;		
+		float: left;
+		border: 5px solid #FFFFFF;
+		margin: 5px;
+	}
+	
+	.active {
+		border: 5px solid #e31818;
+	}
+	#drugs {
+		background-image: url('/images/topics/drugs.png');
+	}
+	
+	#healthcare {
+		background-image: url('/images/topics/healthcare.png');
+	}
+	
+	#immigration {
+		background-image: url('/images/topics/immigration.png');
+	}
+	
+	#education {
+		background-image: url('/images/topics/education.png');
+	}
+
+	#war {
+		background-image: url('/images/topics/war.png');		
+	}
+	
+	#economy {
+		background-image: url('/images/topics/economy.png');
+	}
+	
+	#general {
+		background-image: url('/images/topics/general.png');		
+	}
+	
+}
+
+.candidate-portrait {
+	float: left;
+	width: @base-size;
+	img {
+		width: @base-size;
+		height: @base-size;
+	}
+}
+
+.candidate-section {
+	margin: 25px;
+}

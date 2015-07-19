@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 function avgSentiment(pos, neg) {
-    var avg = []
+    var avg = [];
     for(var i=0; i<pos.length; i++) {
         avg[i] = (pos[i] + neg[i]) / 2;
     }
@@ -16,81 +16,19 @@ var sentiment = avgSentiment(posSentiment, negSentiment);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    var candidates = [
-        {"name":"Donald Trump", "party":"Republican", "img": "donald_trump.jpg"},
-        {"name":"Hillary Clinton", "party":"Democrat", "img": "hillary_clinton.jpg"},
-        {"name":"Bernie Sanders", "party":"Democrat", "img": "bernie_sanders.jpg"},
-    ];
-
-      var positiveData = {
-        max: 1,
-        data: [{lat: 42.5000, lng:-98.34, count: 0.0},
-               {lat: 39.5000, lng:-98.34, count: 0.0},
-               {lat: 40.5000, lng:-98.34, count: 0.5},
-               {lat: 38.5000, lng:-98.34, count: 0.5},
-               {lat: 37.5000, lng:-98.34, count: 0.25},
-               {lat: 36.5000, lng:-98.34, count: 0.5},
-               {lat: 35.5000, lng:-98.34, count: 0.5},
-               {lat: 34.5000, lng:-98.34, count: 0.25},
-               ]
-      };
-      
-      var negativeData = {
-         max: 1,
-         data: [{lat: 41.5000, lng:-98.54, count: 0.0},
-               {lat: 39.5000, lng:-98.54, count: 0.0},
-               {lat: 40.5000, lng:-98.54, count: 0.5},
-               {lat: 38.5000, lng:-98.54, count: 0.5},
-               {lat: 37.5000, lng:-98.54, count: 1.0},
-               {lat: 36.5000, lng:-98.54, count: 0.5},
-               {lat: 35.5000, lng:-98.54, count: 0.5},
-               {lat: 34.5000, lng:-98.54, count: 0.25},
-               ]   
-      }    
+    var donald_trump = require('./scott.json');
+    var jeb_bush = require('./scott.json');
+    var hillary_clinton = require('./scott.json');
+    var bernie_sanders = require('./scott.json');    
     
-    var data = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-            {
-                label: "Positive",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointDot: false,
-                pointDotRadius: 1,
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: posSentiment
-            },
-            {
-                label: "Negative",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointDot: false,
-                pointDotRadius: 1,
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: negSentiment
-            },
-            {
-                label: "Average",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointDot: false,
-                pointDotRadius: 1,
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: sentiment
-            }                      
-        ]
-    };
-      
-  res.render('index', { title: 'TwoCense', data: data, candidates: candidates, positiveData: positiveData, negativeData: negativeData});
+    var candidates = [
+        {"name":"Donald Trump", "party":"Republican", "img": "donald_trump.jpg", "chartData": donald_trump.filter(function(el) {return el.candidate =="Donald Trump"})},
+        {"name":"Jeb Bush", "party":"Republican", "img": "jeb_bush.jpg", "chartData": jeb_bush.filter(function(el) {return el.candidate =="Jeb Bush"})},        
+        {"name":"Hillary Clinton", "party":"Democrat", "img": "hillary_clinton.jpg", "chartData": hillary_clinton.filter(function(el) {return el.candidate =="Hillary Clinton"})},
+        {"name":"Bernie Sanders", "party":"Democrat", "img": "bernie_sanders.jpg", "chartData": bernie_sanders.filter(function(el) {return el.candidate =="Bernie Sanders"})}
+    ];
+   
+    res.render('index', { candidates: candidates });
 });
 
 module.exports = router;

@@ -1,5 +1,6 @@
 .navbar {
   border-radius: 0;
+  background-color: #3333FF;
 }
 .navbar h1 {
   color: #FFFFFF;
@@ -31,7 +32,7 @@
   margin: 5px;
 }
 .issue-list .active {
-  border: 5px solid #000000;
+  border: 5px solid #e31818;
 }
 .issue-list #drugs {
   background-image: url('/images/topics/drugs.png');

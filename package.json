@@ -1,0 +1,24 @@
+{
+  "name": "angelhack15",
+  "version": "1.0.0",
+  "description": "Introducing a change to pull Another change -- hooray!!! `",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.1",
+    "request": "^2.58.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ideasparkII/angelhack15.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ideasparkII/angelhack15/issues"
+  },
+  "homepage": "https://github.com/ideasparkII/angelhack15#readme"
+}

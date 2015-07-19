@@ -1,5 +1,50 @@
 /// <reference path="../../../typings/jquery/jquery.d.ts"/>
 
+var testData2 = [
+    {
+        "Hillary Clinton": 0.5,
+        "Donald Trump": -0.6,
+        "Bernie Sanders": -0.3,
+        "Jeb Bush": 0.5
+    },
+    {
+        "Hillary Clinton": -0.8,
+        "Donald Trump": 0.3,
+        "Bernie Sanders": 0.2,
+        "Jeb Bush": -0.5
+    },
+    {
+        "Hillary Clinton": -0.1,
+        "Donald Trump": 0.5,
+        "Bernie Sanders": -0.5,
+        "Jeb Bush": 0.5
+    },
+    {
+        "Hillary Clinton": 0.9,
+        "Donald Trump": -0.8,
+        "Bernie Sanders": 0.5,
+        "Jeb Bush": 0.5
+    },
+    {
+        "Hillary Clinton": 0.2,
+        "Donald Trump": -0.5,
+        "Bernie Sanders": 0.5,
+        "Jeb Bush": 0.5
+    },
+    {
+        "Hillary Clinton": 0.2,
+        "Donald Trump": -0.5,
+        "Bernie Sanders": 0.4,
+        "Jeb Bush": 0.3
+    },
+    {
+        "Hillary Clinton": 0.25,
+        "Donald Trump": -0.5,
+        "Bernie Sanders": 0.2,
+        "Jeb Bush": 0.9
+    },                        
+]
+
 var testData = [
     {"date": "July 13",
      "candidate": "Hillary Clinton",
@@ -135,7 +180,7 @@ $(document).ready(function() {
         $('h2').text(candidate.name + ' (' + candidate.party + ')');
         $('.candidate-portrait img').attr('src', 'images/portraits/' + candidate.img);
     
-    makeLineChart(testData, candidate.name);
+    makeLineChart(testData2, candidate.name);
         
     var mapData = generateSentimentMapData(candidate.chartData);
 
@@ -262,9 +307,10 @@ $(document).ready(function() {
     var output = [];
     
     for (var i=0; i<data.length; i++) {
-        if (data[i].candidate === candidate) {
-            output.push(data[i].sentiment);
-        }
+//        if (data[i].candidate === candidate) {
+//            output.push(data[i].sentiment);
+//        }
+        output.push(data[i][candidate]);
     }  
       
     var processedData = makeLineChartCfg(output);

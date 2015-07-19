@@ -5,6 +5,9 @@
 .navbar h1 {
   color: #FFFFFF;
 }
+.float-right {
+  float: right;
+}
 .sentiment-map {
   float: left;
   height: 600px;

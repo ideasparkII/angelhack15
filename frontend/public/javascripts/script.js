@@ -1,15 +1,15 @@
 /// <reference path="../../../typings/jquery/jquery.d.ts"/>
 
 var testData = [
-    {"date": "July 19",
+    {"date": "July 13",
      "candidate": "Hillary Clinton",
-     "sentiment": 0.25
+     "sentiment": -0.25
     },
-    {"date": "July 18",
+    {"date": "July 14",
      "candidate": "Hillary Clinton",
      "sentiment": 0.5
     },
-    {"date": "July 17",
+    {"date": "July 15",
      "candidate": "Hillary Clinton",
      "sentiment": 0.75
     },      
@@ -17,19 +17,103 @@ var testData = [
      "candidate": "Hillary Clinton",
      "sentiment": 0.25
     },
-    {"date": "July 15",
+    {"date": "July 17",
      "candidate": "Hillary Clinton",
-     "sentiment": 0.5
+     "sentiment": -0.5
     },
-    {"date": "July 14",
+    {"date": "July 18",
      "candidate": "Hillary Clinton",
      "sentiment": 0.75
     },       
-    {"date": "July 13",
+    {"date": "July 19",
      "candidate": "Hillary Clinton",
+     "sentiment": -0.75
+    },
+    {"date": "July 13",
+     "candidate": "Donald Trump",
+     "sentiment": 0.25
+    },
+    {"date": "July 14",
+     "candidate": "Donald Trump",
+     "sentiment": -0.5
+    },
+    {"date": "July 15",
+     "candidate": "Donald Trump",
      "sentiment": 0.75
+    },      
+    {"date": "July 16",
+     "candidate": "Donald Trump",
+     "sentiment": 0.25
+    },
+    {"date": "July 17",
+     "candidate": "Donald Trump",
+     "sentiment": -0.5
+    },
+    {"date": "July 18",
+     "candidate": "Donald Trump",
+     "sentiment": -0.75
+    },       
+    {"date": "July 19",
+     "candidate": "Donald Trump",
+     "sentiment": -0.75
+    },
+    {"date": "July 13",
+     "candidate": "Bernie Sanders",
+     "sentiment": -0.25
+    },
+    {"date": "July 14",
+     "candidate": "Bernie Sanders",
+     "sentiment": 0.5
+    },
+    {"date": "July 15",
+     "candidate": "Bernie Sanders",
+     "sentiment": 0.75
+    },      
+    {"date": "July 16",
+     "candidate": "Bernie Sanders",
+     "sentiment": 0.25
+    },
+    {"date": "July 17",
+     "candidate": "Bernie Sanders",
+     "sentiment": 0.5
+    },
+    {"date": "July 18",
+     "candidate": "Bernie Sanders",
+     "sentiment": -0.75
+    },       
+    {"date": "July 19",
+     "candidate": "Bernie Sanders",
+     "sentiment": -0.75
+    },
+    {"date": "July 13",
+     "candidate": "Jeb Bush",
+     "sentiment": -0.25
+    },
+    {"date": "July 14",
+     "candidate": "Jeb Bush",
+     "sentiment": 0.5
+    },
+    {"date": "July 15",
+     "candidate": "Jeb Bush",
+     "sentiment": -0.75
+    },      
+    {"date": "July 16",
+     "candidate": "Jeb Bush",
+     "sentiment": 0.25
+    },
+    {"date": "July 17",
+     "candidate": "Jeb Bush",
+     "sentiment": -0.5
+    },
+    {"date": "July 18",
+     "candidate": "Jeb Bush",
+     "sentiment": 0.70
+    },       
+    {"date": "July 19",
+     "candidate": "Jeb Bush",
+     "sentiment": -0.75
     }       
-]
+];
 
 var positiveSentimentLayer;
 var negativeSentimentLayer;
@@ -51,7 +135,7 @@ $(document).ready(function() {
         $('h2').text(candidate.name + ' (' + candidate.party + ')');
         $('.candidate-portrait img').attr('src', 'images/portraits/' + candidate.img);
     
-    //makeLineChart();
+    makeLineChart(testData, candidate.name);
         
     var mapData = generateSentimentMapData(candidate.chartData);
 
@@ -127,34 +211,34 @@ $(document).ready(function() {
       return {"positive": positiveSentimentData, "negative": negativeSentimentData};
   };
   
-  var makeLineChartCfg = function(positiveSentiment, negativeSentiment, averageSentiment){
+  var makeLineChartCfg = function(averageSentiment, positiveSentiment, negativeSentiment){
     var lineChartCfg = {
         labels: ["July 13", "July 14", "July 15", "July 16", "July 17", "July 18", "July 19"],
         datasets: [
-            {
-                label: "Positive",
-                fillColor: "rgba(227,24,24,1)",
-                strokeColor: "rgba(227,24,24,1)",
-                pointColor: "rgba(227,24,24,1)",
-                pointDot: false,
-                pointDotRadius: 1,
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(227,24,24,1)",
-                data: positiveSentiment
-            },
-            {
-                label: "Negative",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointDot: false,
-                pointDotRadius: 1,
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: negativeSentiment
-            },
+//            {
+//                label: "Positive",
+//                fillColor: "rgba(227,24,24,1)",
+//                strokeColor: "rgba(227,24,24,1)",
+//                pointColor: "rgba(227,24,24,1)",
+//                pointDot: false,
+//                pointDotRadius: 1,
+//                pointStrokeColor: "#fff",
+//                pointHighlightFill: "#fff",
+//                pointHighlightStroke: "rgba(227,24,24,1)",
+//                data: positiveSentiment
+//            },
+//            {
+//                label: "Negative",
+//                fillColor: "rgba(220,220,220,0.2)",
+//                strokeColor: "rgba(220,220,220,1)",
+//                pointColor: "rgba(220,220,220,1)",
+//                pointDot: false,
+//                pointDotRadius: 1,
+//                pointStrokeColor: "#fff",
+//                pointHighlightFill: "#fff",
+//                pointHighlightStroke: "rgba(220,220,220,1)",
+//                data: negativeSentiment
+//            },
             {
                 label: "Average",
                 fillColor: "rgba(220,220,220,0.2)",
@@ -173,14 +257,25 @@ $(document).ready(function() {
     return lineChartCfg;      
   }
   
-  var makeLineChart = function(data) {
+  var makeLineChart = function(data, candidate) {
+    
+    var output = [];
+    
+    for (var i=0; i<data.length; i++) {
+        if (data[i].candidate === candidate) {
+            output.push(data[i].sentiment);
+        }
+    }  
+      
+    var processedData = makeLineChartCfg(output);
+      
     var ctx = $("#myChart").get(0).getContext("2d");
     // This will get the first returned node in the jQuery collection.
     var options;
-    var myNewChart = new Chart(ctx).Line(data, options);      
+    var myNewChart = new Chart(ctx).Line(processedData, options);      
   };
     
-  //makeLineChart(data);
+    makeLineChart(testData, "Hillary Clinton");
     initMap(); 
     setCandidateInfo(candidates[0]);
 

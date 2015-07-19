@@ -1,54 +1,80 @@
 <!DOCTYPE html>  
-<html lang="en">  
-  <head>
-    <meta charset="utf-8">
-    <title>TwoCense</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://bootswatch.com/superhero/bootstrap.min.css" rel="stylesheet">
-    <link href="stylesheets/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />  
-    
-    <script>
-      var data = <%- JSON.stringify(data) %>;
-    </script>      
-      
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>  
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>    
-    
-    <script src="/javascripts/Chart.min.js"></script>
-    <script src="/javascripts/heatmap/build/heatmap.min.js"></script>
-    <script src="/javascripts/heatmap/plugins/leaflet-heatmap.js"></script>    
-    <script src="/javascripts/script.js"></script>
-  </head>
-  <body>
-    <h1>Welcome to <%= title %></h1>
-    
-    <select class="form-control">
-    <% for(var i=0; i<candidates.length; i++) {%>
-       <option><%= candidates[i].name %> (<%= candidates[i].party %>)</option>
-    <% } %>
-    </select>
-    
-    <div class="candidate">
-      <h2><%= candidates[0].name %></h2>
-      
-      <ul class="issue-list">
-        <li class="issue-icon" id="general"></li>
-        <li class="issue-icon" id="healthcare"></li>
-        <li class="issue-icon" id="economy"></li>
-        <li class="issue-icon" id="war"></li>
-        <li class="issue-icon" id="education"></li>      
-        <li class="issue-icon" id="drugs"></li>        
-        <li class="issue-icon" id="immigration"></li>                                  
-      </ul>    
-      
-      <div class="candidate-section candidate-portrait">
-        <img src="http://placehold.it/200x200" />
-      </div>
-      <canvas class="candidate-section sentiment-chart" id="myChart" width="400" height="400"></canvas>
-      <div class="candidate-section heatmap sentiment-map" id="map-canvas"></div>
-    </div>
-  </body>
-</html>  
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>TwoCense</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link href="https://bootswatch.com/flatly/bootstrap.min.css" rel="stylesheet">
+        <link href="stylesheets/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+        <script>
+            var data = <%- JSON.stringify(data) %>;
+            var candidates = <%- JSON.stringify(candidates) %>;
+            var positiveData = <%- JSON.stringify(positiveData) %>;
+            var negativeData = <%- JSON.stringify(negativeData) %>;      
+        </script>      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>  
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>    
+        <script src="/javascripts/Chart.min.js"></script>
+        <script src="/javascripts/heatmap/build/heatmap.min.js"></script>
+        <script src="/javascripts/heatmap/plugins/leaflet-heatmap.js"></script>    
+        <script src="/javascripts/script.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <h1>TwoCense</h1>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-3">
+                    <select id="select-candidate" class="form-control">
+                        <% for(var i=0; i<candidates.length; i++) {%>
+                        <option value="<%= i %>"><%= candidates[i].name %> (<%= candidates[i].party %>)</option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="col-xs-9">
+                    <ul class="issue-list">
+                        <li class="issue-icon" id="general"></li>
+                        <li class="issue-icon" id="healthcare"></li>
+                        <li class="issue-icon" id="economy"></li>
+                        <li class="issue-icon" id="war"></li>
+                        <li class="issue-icon" id="education"></li>
+                        <li class="issue-icon" id="drugs"></li>
+                        <li class="issue-icon" id="immigration"></li>
+                    </ul>
+                </div>                
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2><%= candidates[0].name %> (<%= candidates[0].party %>)</h2>                    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-2">
+                    <div class="candidate">
+                        <div class="candidate-section candidate-portrait">
+                            <img src="/images/portraits/<%= candidates[0].img %>"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-10">
+                    <canvas class="candidate-section sentiment-chart" id="myChart" width="400" height="400"></canvas>
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="candidate-section heatmap sentiment-map" id="map-canvas"></div>                            
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </body>
+</html>

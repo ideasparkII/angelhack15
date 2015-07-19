@@ -1,37 +1,79 @@
-@section-height: 240px;
+@base-size: 150px;
+
+.navbar {
+	border-radius: 0;
+	h1 {
+		color: #FFFFFF;
+	}
+}
 
 .sentiment-map {
 	float: left;
-	height: @section-height;
-	width: 400px;
+	height: @base-size*4;
+	width: @base-size*7.25;
 }
 
 .sentiment-chart {
 	float: left;
-	width: 500px;
-	height: @section-height;
+	height: @base-size;
+	width: @base-size*6;
 }
 
 .issue-list {
+	float: right;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	height: 50px;
+	height: 60px;
 	li {
 		width: 50px;
 		height: 50px;
-		background-color: #333333;
+		background-color: #FFFFFF;
+		background-size: contain;		
 		float: left;
+		border: 5px solid #FFFFFF;
 		margin: 5px;
-	}	
+	}
+	
+	.active {
+		border: 5px solid #000000;
+	}
+	#drugs {
+		background-image: url('/images/topics/drugs.png');
+	}
+	
+	#healthcare {
+		background-image: url('/images/topics/healthcare.png');
+	}
+	
+	#immigration {
+		background-image: url('/images/topics/immigration.png');
+	}
+	
+	#education {
+		background-image: url('/images/topics/education.png');
+	}
+
+	#war {
+		background-image: url('/images/topics/war.png');		
+	}
+	
+	#economy {
+		background-image: url('/images/topics/economy.png');
+	}
+	
+	#general {
+		background-image: url('/images/topics/general.png');		
+	}
+	
 }
 
 .candidate-portrait {
 	float: left;
-	width: 210px;
+	width: @base-size;
 	img {
-		width: 210px;
-		height: 210px;
+		width: @base-size;
+		height: @base-size;
 	}
 }
 

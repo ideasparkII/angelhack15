@@ -1,3 +1,40 @@
-#map-canvas {
-	height: 500px;
+@section-height: 240px;
+
+.sentiment-map {
+	float: left;
+	height: @section-height;
+	width: 400px;
+}
+
+.sentiment-chart {
+	float: left;
+	width: 500px;
+	height: @section-height;
+}
+
+.issue-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	height: 50px;
+	li {
+		width: 50px;
+		height: 50px;
+		background-color: #333333;
+		float: left;
+		margin: 5px;
+	}	
+}
+
+.candidate-portrait {
+	float: left;
+	width: 210px;
+	img {
+		width: 210px;
+		height: 210px;
+	}
+}
+
+.candidate-section {
+	margin: 25px;
 }

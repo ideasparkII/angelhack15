@@ -25,14 +25,30 @@
   <body>
     <h1>Welcome to <%= title %></h1>
     
-    <select>
+    <select class="form-control">
     <% for(var i=0; i<candidates.length; i++) {%>
        <option><%= candidates[i].name %> (<%= candidates[i].party %>)</option>
     <% } %>
     </select>
     
-    <h2></h2>
-    <canvas id="myChart" width="400" height="400"></canvas>
-    <div id="map-canvas" class="heatmap"></div>
+    <div class="candidate">
+      <h2><%= candidates[0].name %></h2>
+      
+      <ul class="issue-list">
+        <li class="issue-icon" id="general"></li>
+        <li class="issue-icon" id="healthcare"></li>
+        <li class="issue-icon" id="economy"></li>
+        <li class="issue-icon" id="war"></li>
+        <li class="issue-icon" id="education"></li>      
+        <li class="issue-icon" id="drugs"></li>        
+        <li class="issue-icon" id="immigration"></li>                                  
+      </ul>    
+      
+      <div class="candidate-section candidate-portrait">
+        <img src="http://placehold.it/200x200" />
+      </div>
+      <canvas class="candidate-section sentiment-chart" id="myChart" width="400" height="400"></canvas>
+      <div class="candidate-section heatmap sentiment-map" id="map-canvas"></div>
+    </div>
   </body>
 </html>  

@@ -1,13 +1,18 @@
 var gulp = require('gulp');
 var twitter = require('twitter');
 var schedule = require('node-schedule');
-var Twitter = require('node-twitter')
+var Twitter = require('node-twitter');
+var AWS = require('aws-sdk');
+var S3FS = require('s3fs');
+var fs = require('fs');
 
 
-gulp.task('default', scheduleSecond('P Square'));
+
+gulp.task('default', scheduleSecond('#GrowingUpWithSiblings'));
 gulp.task('fetchTwitter', fetchTwitter);
 
 var tweetQueue = [];
+
 
 //Scheduler that pulls from Twitter and uploads to s3 bucket every 1 second
 function scheduleSecond(keyword){
@@ -19,7 +24,12 @@ function scheduleSecond(keyword){
 	var j = schedule.scheduleJob(rule, function(){
 		if(tweetQueue.length > 0){
 			for(i = 0; i < tweetQueue.length; i++){
-				console.log(tweetQueue[i]);
+				var s3 = new AWS.S3({params:{Bucket:'two-cense-twitter-data-raw', Key: tweetQueue[i].created_at}});
+				s3.upload({Body:JSON.stringify(tweetQueue[i])}, function(){
+					console.log("Successfully uploaded!");
+				});
+				 var string = JSON.stringify(tweetQueue[i]);
+				 console.log(tweetQueue[i].user.name + tweetQueue[i].text + " " + tweetQueue[i].created_at);
 			}
 			tweetQueue = [];
 		}
@@ -45,7 +55,8 @@ function fetchTwitter(keyword){
 	});
 	t.on('tweet', function(tweet){
 		// console.log(tweet.text);
-		tweetQueue.push(tweet.screen_name + " " + tweet.text + " " + tweet.created_at);
+		// tweetQueue.push(tweet.retweeted + " " + tweet.text + " " + tweet.created_at);
+		tweetQueue.push(tweet);
 	});
 	t.start([keyword]);
 

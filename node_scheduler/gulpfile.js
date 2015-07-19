@@ -148,7 +148,7 @@ function scheduleTweet(keywords){
 		} 
 	}); 
 	var d = schedule.scheduleJob(mineRule, function(){
-		fetchDate(keywords, '2015-7-10'); //Possibilities for future featers: add a get current date for 'end date'
+		fetchDate(keywords, '2015-7-10', '2015-7-19'); //Possibilities for future featers: add a get current date for 'end date'
 		console.log("Data mined!");
 	});
 }
@@ -179,7 +179,7 @@ function fetchTwitter(keywords){
 
 }
 
-function fetchDate(keywords, start){
+function fetchDate(keywords, start, end){
 	var i = 0;
 	var t = new Twit({
 		consumer_key:'OP2irYRbaRrryFAN0l69RhHie',
@@ -188,7 +188,7 @@ function fetchDate(keywords, start){
 		access_token_secret: '0v8qCUs6E1B26btWamXum2qNpERfvayaOAAQ0hiN3R6zT'
 	});
 	console.log(keywords2.join(', '));
-	t.get('search/tweets', {q: keywords2.join(', ').substring(0, keywords.length - 2) + ' since:' + start, count:1000}, function(err, data, response){
+	t.get('search/tweets', {q: keywords2.join(', ').substring(0, keywords.length - 2) + ' since:' + start + ' until:' + end, count:1000}, function(err, data, response){
 			if(data.statuses.length > 0){
 				for(i = 0; i< data.statuses.length; i++){
 					console.log(data.statuses[i].text);
